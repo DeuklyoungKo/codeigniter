@@ -82,6 +82,55 @@ class Topic extends CI_Controller{
 	}
 
 
+  function upload_receive_from_ck(){
+    // 사용자가 업로드 한 파일을 /static/user/ 디렉토리에 저장한다.
+    $config['upload_path'] = './static/user';
+    // git,jpg,png 파일만 업로드를 허용한다.
+    $config['allowed_types'] = 'gif|jpg|png';
+    // 허용되는 파일의 최대 사이즈
+    $config['max_size'] = '100';
+    // 이미지인 경우 허용되는 최대 폭
+    $config['max_width']  = '1024';
+    // 이미지인 경우 허용되는 최대 높이
+    $config['max_height']  = '768';
+    $this->load->library('upload', $config);
+
+    if ( ! $this->upload->do_upload("upload")){
+			echo $this->upload->display_errors();
+//echo ' {"error":{"number":116,"message":"Folder not found. Please refresh and try again."}}';
+		}else{
+			$data = array('upload_data' => $this->upload->data());
+
+//      echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction('콜백의 식별 ID 값', '파일의 URL', '전송완료 메시지')</script>";
+
+/*
+  		  var_dump($data);
+  		  var_dump($data['upload_data']["file_name"]);
+*/
+
+
+
+        echo '
+          {
+               "fileName": "'.$data['upload_data']["file_name"].'",
+               "uploaded": 1,
+               "url": "\/static\/user\/'.$data['upload_data']["file_name"].'"
+           }
+
+         ';
+/*
+// samples data form
+      {"fileName":"bird(1).jpg","uploaded":1,"url":"\/userfiles\/images\/bird(1).jpg"}
+
+      echo "성공";
+			$this->load->view('upload_success', $data);
+
+*/
+
+		}
+	}
+
+
   function upload_form(){
     $this->_head();
     $this->load->view('upload_form');
