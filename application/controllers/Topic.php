@@ -1,6 +1,6 @@
 <?php if(!defined('BASEPATH')) exit ('No direct script access allowed');
 
-class Topic extends CI_Controller{
+class Topic extends MY_Controller{
 
   function __construct(){
     parent::__construct();
@@ -12,14 +12,16 @@ class Topic extends CI_Controller{
 
   function index(){
     $this->_head();
+    $this->_sidebar();
     $this->load->view('main');
-    $this->load->view('footer');
+    $this->_footer();
   }
 
 
   function get($id){
     log_message('debug', 'get 호출');
     $this->_head();
+    $this->_sidebar();
 
     $topic = $this->Topic_model->get($id);
 
@@ -33,11 +35,24 @@ class Topic extends CI_Controller{
     $this->load->view('get',array('topic'=>$topic));
     log_message('debug', 'footer view 로딩');
 
-    $this->load->view('footer');
+    $this->_footer();
   }
 
   function add(){
+
+
+      // 로그인 필요
+      //
+      // 로그인이 되어 있지않다면 로그인 페이지로 리다이렉션
+      if(!$this->session->userdata('is_login')){
+
+        $this->load->helper('url');
+        redirect('/auth/login');
+
+      }
+
       $this->_head();
+      $this->_sidebar();
 
       $this->load->library('form_validation');
       $this->form_validation->set_rules('title', '제목', 'required');
@@ -55,7 +70,7 @@ class Topic extends CI_Controller{
 //          redirect('/topic/get/1');//
       }
 
-      $this->load->view('footer');
+      $this->_footer();
   }
 
   function upload_receive(){
@@ -101,15 +116,6 @@ class Topic extends CI_Controller{
 		}else{
 			$data = array('upload_data' => $this->upload->data());
 
-//      echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction('콜백의 식별 ID 값', '파일의 URL', '전송완료 메시지')</script>";
-
-/*
-  		  var_dump($data);
-  		  var_dump($data['upload_data']["file_name"]);
-*/
-
-
-
         echo '
           {
                "fileName": "'.$data['upload_data']["file_name"].'",
@@ -133,15 +139,15 @@ class Topic extends CI_Controller{
 
   function upload_form(){
     $this->_head();
+    $this->_sidebar();    
     $this->load->view('upload_form');
-    $this->load->view('footer');
+    $this->_footer();
   }
 
-  function _head(){
-      $this->load->view('head');
-      $topics = $this->Topic_model->gets();
-      $this->load->view('topic_list', array('topics'=>$topics));
-  }
+
+
+
+
 
 }
 ?>

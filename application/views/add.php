@@ -7,9 +7,8 @@
   <div class="form-group">
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="15" name="description" placeholder="본문"></textarea>
   </div>
-  <button type="submit" class="btn btn-success">추가</button>
+  <button type="submit" class="btn btn-primary" >추가</button>
 </form>
-
 
 <script>
   CKEDITOR.addCss( '.cke_editable { font-size: 15px; padding: 2em; }' );
