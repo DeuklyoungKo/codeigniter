@@ -22,6 +22,15 @@
   </style>
 </head>
 <body>
+<?php
+  if($this->session->flashdata('message')){
+?>
+  <script>
+    alert('<?=$this->session->flashdata('message')?>');
+  </script>
+<?php
+  }
+?>
   <div class="container fixed-top container2">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
       <a class="navbar-brand" href="/index.php/topic">javascript</a>
@@ -40,11 +49,11 @@
 <?php
   if($this->session->userdata('is_login')){
 ?>
-        <a class="btn btn-outline-primary" href="/index.php/auth/register" role="button">Sign Out</a>
+        <a class="btn btn-outline-primary" href="/index.php/auth/logout" role="button">Sign Out</a>
 <?php
   }else{
 ?>
-        <a class="btn btn-outline-primary" href="/index.php/auth/add" role="button">Sign In</a>
+        <a class="btn btn-outline-primary" href="/index.php/auth/login" role="button">Sign In</a>
         <a class="btn btn-outline-primary" href="/index.php/auth/register" role="button">Sign Up</a>
 <?php
   }
