@@ -17,7 +17,7 @@ class Topic extends MY_Controller{
     $this->_footer();
   }
 
- 
+
   function get($id){
     log_message('debug', 'get 호출');
     $this->_head();
@@ -38,17 +38,12 @@ class Topic extends MY_Controller{
     $this->_footer();
   }
 
+
   function add(){
 
-
       // 로그인 필요
-      //
-      // 로그인이 되어 있지않다면 로그인 페이지로 리다이렉션
       if(!$this->session->userdata('is_login')){
-
-        $this->load->helper('url');
-        redirect('/auth/login');
-
+        redirect('/auth/login?returnURL='.$this->_getReturnUrl());
       }
 
       $this->_head();
@@ -62,12 +57,7 @@ class Topic extends MY_Controller{
            $this->load->view('add');
       }else{
           $topic_id = $this->Topic_model->add($this->input->post('title'), $this->input->post('description'));
-
-//var_dump($topic_id);
-
-          $this->load->helper('url');
           redirect('/topic/get/'.$topic_id,'location');
-//          redirect('/topic/get/1');//
       }
 
       $this->_footer();

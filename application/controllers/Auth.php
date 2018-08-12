@@ -6,19 +6,33 @@ class Auth extends MY_Controller{
     parent::__construct();
   }
 
+
   function login(){
+
+    $returnURL = $this->input->GET("returnURL");
+    if(!$returnURL){
+      $returnURL = $_SERVER["HTTP_REFERER"];
+    }
+
     $this->_head();
-    $this->load->view('login');
+    $this->load->view('login',array("returnURL"=>$returnURL));
     $this->_footer();
   }
 
 
   function authentication(){
 
+    $returnURL = $this->input->POST('returnURL');
+    $email = $this->input->POST('email');
+    $password = $this->input->POST('password');
+    if(!$returnURL){
+      $returnURL = "/topic";
+    }
+
 //    $authentication = $this->config->item("authentication");
     $this->load->model('User_model');
     $usr = $this->User_model->getByEmail(array(
-              'email'=>$this->input->POST('email')
+              'email'=>$email
             ));
 
     if(!function_exists('password_hash')){
@@ -26,17 +40,15 @@ class Auth extends MY_Controller{
     }
 
     if(
-      $this->input->POST('email') == $usr->email &&
-      password_verify($this->input->post('password'), $usr->password)
+      $email == $usr->email &&
+      password_verify($password, $usr->password)
     ){
 
       $this->session->set_userdata('is_login',true);
-      $this->load->helper('url');
-      redirect('/topic/add');
+      redirect($returnURL);
     }else{
       $this->session->set_flashdata('message','fail to sign in');
-      $this->load->helper('url');
-      redirect('/auth/login');
+      redirect('/auth/login?returnURL='.$returnURL);
     }
   }
 

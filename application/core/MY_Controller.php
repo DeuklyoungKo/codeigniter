@@ -12,13 +12,24 @@
 
 
     function _head(){
-        $this->load->view('head');
+        $this->load->view('head',array(''));
     }
 
     function _sidebar(){
       $topics = $this->Topic_model->gets();
       $this->load->view('topic_list', array('topics'=>$topics));
     }
+
+// to make return url
+    function _getReturnUrl($inputUrl = false){
+      if($inputUrl){
+        $result = rawurlencode($inputUrl);
+      }else{
+        $result = rawurlencode(uri_string());
+      }
+      return $result;
+    }
+
 
   }
 ?>
