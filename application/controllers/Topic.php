@@ -17,7 +17,7 @@ class Topic extends MY_Controller{
     $this->_footer();
   }
 
-
+ 
   function get($id){
     log_message('debug', 'get 호출');
     $this->_head();
@@ -139,7 +139,7 @@ class Topic extends MY_Controller{
 
   function upload_form(){
     $this->_head();
-    $this->_sidebar();    
+    $this->_sidebar();
     $this->load->view('upload_form');
     $this->_footer();
   }
