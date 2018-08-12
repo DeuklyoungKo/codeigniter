@@ -43,7 +43,7 @@
             <a class="nav-link disabled" href="#">menu1</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">menu2</a>
+            <a class="nav-link disabled" href="/index.php/Mailtest">mail</a>
           </li>
         </ul>
 <?php

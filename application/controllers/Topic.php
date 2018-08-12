@@ -57,6 +57,23 @@ class Topic extends MY_Controller{
            $this->load->view('add');
       }else{
           $topic_id = $this->Topic_model->add($this->input->post('title'), $this->input->post('description'));
+
+          $this->load->model('User_model');
+          $users = $this->User_model->gets();
+          $this->load->library('email');
+          $this->email->initialize(array('mailtype'=>'html'));
+
+          foreach($users as $user){
+
+            $mail_content = '<a href="'.site_url().'index.php/topic/get/'.$topic_id.'">'.$this->input->post('title').'</a>';
+
+            $this->email->from('gon@gon.com','gon');
+            $this->email->subject('sended email');
+            $this->email->message($mail_content);
+            $this->email->to($user->email);
+            $this->email->send();
+          }
+
           redirect('/topic/get/'.$topic_id,'location');
       }
 

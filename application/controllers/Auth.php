@@ -25,6 +25,7 @@ class Auth extends MY_Controller{
     $returnURL = $this->input->POST('returnURL');
     $email = $this->input->POST('email');
     $password = $this->input->POST('password');
+
     if(!$returnURL){
       $returnURL = "/topic";
     }

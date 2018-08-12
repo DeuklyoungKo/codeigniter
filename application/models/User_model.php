@@ -16,12 +16,14 @@
     }
 
     function getByEmail($option){
-
       $result = $this->db->get_where('user',array('email'=>$option['email']))->row();
 //      var_dump($this->db->last_query());
       return $result;
     }
 
+    function gets(){
+      return $this->db->query("select * from user")->result();
+    }
 
 
   }
