@@ -83,6 +83,8 @@ class Topic extends MY_Controller{
           $this->load->model('Batch_model');
           $this->Batch_model->add(array('job_name'=>'notify_email_add_topic','context'=>json_encode(array('topic_id'=>$topic_id))));
 
+          $this->cache->delete('topics');
+
           redirect('/topic/get/'.$topic_id,'location');
       }
 
@@ -161,9 +163,14 @@ class Topic extends MY_Controller{
   }
 
 
-
-
-
+  function delete(){
+    $topic_id = $this->input->post('topic_id');
+    $this->_require_login();
+    $this->load->model('Topic_model');
+    $this->Topic_model->delete($topic_id);
+    $this->cache->delete('topics');
+    redirect('/topic');
+  }
 
 }
 ?>

@@ -4,6 +4,14 @@
   class MY_Controller extends CI_Controller{
     function __construct(){
       parent::__construct();
+
+      if($peak = $this->config->item('peak_page_cache')){
+        if($peak==current_url()){
+          $this->output->cache(5);
+        }
+      }
+
+      $this->load->driver('cache',array('adapter'=>'file'));
     }
 
     function _footer(){
@@ -16,7 +24,10 @@
     }
 
     function _sidebar(){
-      $topics = $this->Topic_model->gets();
+      if(!$topics = $this->cache->get('topics')){
+        $topics = $this->Topic_model->gets();
+        $this->cache->save('topics',$topics,60*5);
+      }
       $this->load->view('topic_list', array('topics'=>$topics));
     }
 
@@ -28,6 +39,12 @@
         $result = rawurlencode(uri_string());
       }
       return $result;
+    }
+
+    function _require_login(){
+      if(!$this->session->userdata('is_login')){
+        redirect('/auth/login');
+      }
     }
 
 
