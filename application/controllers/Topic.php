@@ -58,6 +58,9 @@ class Topic extends MY_Controller{
       }else{
           $topic_id = $this->Topic_model->add($this->input->post('title'), $this->input->post('description'));
 
+/*
+// old source
+
           $this->load->model('User_model');
           $users = $this->User_model->gets();
           $this->load->library('email');
@@ -73,6 +76,12 @@ class Topic extends MY_Controller{
             $this->email->to($user->email);
             $this->email->send();
           }
+*/
+
+
+// to change to use batch
+          $this->load->model('Batch_model');
+          $this->Batch_model->add(array('job_name'=>'notify_email_add_topic','context'=>json_encode(array('topic_id'=>$topic_id))));
 
           redirect('/topic/get/'.$topic_id,'location');
       }
