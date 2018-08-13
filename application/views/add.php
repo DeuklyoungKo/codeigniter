@@ -1,5 +1,5 @@
 <script src="/vendor/ckeditor/ckeditor/ckeditor.js"></script>
-<form action="/index.php/topic/add" method="post" class="col-sm-10">
+<form action="/topic/add" method="post" class="col-sm-10">
   <div class="form-group">
     <?php echo validation_errors(); ?>
     <input type="text" class="form-control" id="exampleFormControlInput1" name="title"  placeholder="제목">
@@ -17,7 +17,7 @@
 
     // Configure your file manager integration. This example uses CKFinder 3 for PHP.
     // filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-    filebrowserImageUploadUrl: '/index.php/topic/upload_receive_from_ck?command=FileUpload&type=Images&currentFolder=/index.php/topic/add',
+    filebrowserImageUploadUrl: '/topic/upload_receive_from_ck?command=FileUpload&type=Images&currentFolder=/topic/add',
   } );
 </script>
 
@@ -25,7 +25,7 @@
 <!--
 <script>
   CKEDITOR.replace( 'description', {
-      'filebrowserUploadUrl': '/index.php/topic/upload_receive_from_ck'
+      'filebrowserUploadUrl': '/topic/upload_receive_from_ck'
   });
 </script>
 -->

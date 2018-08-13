@@ -33,7 +33,7 @@
 ?>
   <div class="container fixed-top container2">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-      <a class="navbar-brand" href="/index.php/topic">javascript</a>
+      <a class="navbar-brand" href="/topic">javascript</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -43,18 +43,18 @@
             <a class="nav-link disabled" href="#">menu1</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="/index.php/Mailtest">mail</a>
+            <a class="nav-link disabled" href="/Mailtest">mail</a>
           </li>
         </ul>
 <?php
   if($this->session->userdata('is_login')){
 ?>
-        <a class="btn btn-outline-primary" href="/index.php/auth/logout" role="button">Sign Out</a>
+        <a class="btn btn-outline-primary" href="/auth/logout" role="button">Sign Out</a>
 <?php
   }else{
 ?>
-        <a class="btn btn-outline-primary" href="/index.php/auth/login" role="button">Sign In</a>
-        <a class="btn btn-outline-primary" href="/index.php/auth/register" role="button">Sign Up</a>
+        <a class="btn btn-outline-primary" href="/auth/login" role="button">Sign In</a>
+        <a class="btn btn-outline-primary" href="/auth/register" role="button">Sign Up</a>
 <?php
   }
 ?>

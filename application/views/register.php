@@ -3,7 +3,7 @@
     <div class="col-sm"></div>
     <div class="col-sm-8">
 <?php echo validation_errors(); ?>
-      <form class="form-horizontal" action="/index.php/auth/register" method="post">
+      <form class="form-horizontal" action="/auth/register" method="post">
         <div class="control-group">
           <div class="form-group">
             <label for="email">Email</label>
