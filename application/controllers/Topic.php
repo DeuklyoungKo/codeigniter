@@ -138,7 +138,7 @@ class Topic extends MY_Controller{
           {
                "fileName": "'.$data['upload_data']["file_name"].'",
                "uploaded": 1,
-               "url": "\/static\/user\/'.$data['upload_data']["file_name"].'"
+               "url": "\/ci1\/static\/user\/'.$data['upload_data']["file_name"].'"
            }
 
          ';

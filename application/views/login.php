@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Login</h5>
       </div>
-      <form action="/auth/authentication/" method="post">
+      <form action="/ci1/auth/authentication/" method="post">
         <input type="hidden" name="returnURL" value="<?=$returnURL?>">
         <div class="modal-body">
             <div class="form-group">
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="modal-footer">
-          <a class="btn btn-primary" href="/topic" role="button">Cancel</a>
+          <a class="btn btn-primary" href="/ci1/topic" role="button">Cancel</a>
           <input type="submit" class="btn btn-primary" value="Login">
         </div>
       </form>

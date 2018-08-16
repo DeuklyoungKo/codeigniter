@@ -26,7 +26,7 @@ function register(){
 
         $this->session->set_flashdata('message', '회원가입에 성공했습니다.');
         $this->load->helper('url');
-        redirect('/');
+        redirect('/ci1');
     }
 
 

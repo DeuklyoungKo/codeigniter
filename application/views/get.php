@@ -7,9 +7,9 @@
     </div>
   </article>
   <div>
-      <form action='/topic/delete' method='post'>
+      <form action='/ci1/topic/delete' method='post'>
         <input type='hidden' name="topic_id" value="<?=$topic->id?>" />
-        <a href="/topic/add" class="btn btn-primary">추가</a>
+        <a href="/ci1/topic/add" class="btn btn-primary">추가</a>
         <input type="submit" class="btn" value="삭제" />
       </form>
   </div>

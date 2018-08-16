@@ -27,7 +27,7 @@ class Auth extends MY_Controller{
     $password = $this->input->POST('password');
 
     if(!$returnURL){
-      $returnURL = "/topic";
+      $returnURL = "/ci1/topic";
     }
 
 //    $authentication = $this->config->item("authentication");
@@ -49,7 +49,7 @@ class Auth extends MY_Controller{
       redirect($returnURL);
     }else{
       $this->session->set_flashdata('message','fail to sign in');
-      redirect('/auth/login?returnURL='.$returnURL);
+      redirect('/ci1/auth/login?returnURL='.$returnURL);
     }
   }
 
@@ -60,7 +60,7 @@ class Auth extends MY_Controller{
 //    session_destroy();
     $this->session->set_flashdata('message','complete sign out');
     $this->load->helper('url');
-    redirect('/topic');
+    redirect('/ci1/topic');
   }
 
 
@@ -93,7 +93,7 @@ class Auth extends MY_Controller{
 
       $this->session->set_flashdata('message','success to sign up');
       $this->load->helper('url');
-      redirect('/topic');
+      redirect('/ci1/topic');
     }
 
 

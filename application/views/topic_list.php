@@ -4,7 +4,7 @@
     <?php
       foreach($topics as $entry){
     ?>
-        <li class="nav-item"><a href="/topic/get/<?=$entry->id?>" class="text-success"><?=$entry->title?></a></li>
+        <li class="nav-item"><a href="/ci1/topic/get/<?=$entry->id?>" class="text-success"><?=$entry->title?></a></li>
     <?php
       }
     ?>
